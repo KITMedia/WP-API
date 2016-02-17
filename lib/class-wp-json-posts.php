@@ -946,7 +946,13 @@ class WP_JSON_Posts {
 
 		// Post meta
 		// TODO: implement this
-		$post_ID = $update ? wp_update_post( $post, true ) : wp_insert_post( $post, true );
+		if ( $update && isset( $_REQUEST['autosave'] ) ) {
+			$post['_wpnonce'] = wp_create_nonce( 'update-post_' . $post['ID'] );
+			$post['post_id']  = $post['ID'];
+			$post_ID          = wp_autosave( $post );
+		} else {
+			$post_ID = $update ? wp_update_post( $post, true ) : wp_insert_post( $post, true );
+		}
 
 		if ( is_wp_error( $post_ID ) ) {
 			return $post_ID;
