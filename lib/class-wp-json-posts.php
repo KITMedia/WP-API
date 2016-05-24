@@ -184,7 +184,8 @@ class WP_JSON_Posts {
 				continue;
 			}
 
-			$response->link_header( 'item', json_url( '/posts/' . $post['ID'] ), array( 'title' => $post['post_title'] ) );
+			// WP-383, remove this header to prevent 504 error (header to large) for nginx.
+			// $response->link_header( 'item', json_url( '/posts/' . $post['ID'] ), array( 'title' => $post['post_title'] ) );
 			$post_data = $this->prepare_post( $post, $context );
 			if ( is_wp_error( $post_data ) ) {
 				continue;
