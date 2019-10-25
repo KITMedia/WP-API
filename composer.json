@@ -1,6 +1,6 @@
 {
-    "name": "kitmedia/wp-api",
-    "description": "kitmedia fork of wp-api, fixing some things like autosave for v1",
+    "name": "storykit/wp-api",
+    "description": "storykit fork of wp-api, fixing some things like autosave for v1",
     "type" : "wordpress-plugin",
     "require": {
         "composer/installers": "~1.0"
